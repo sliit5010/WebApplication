@@ -1,0 +1,8 @@
+0d6684d6-adf2-4f7d-bcaa-7b3862b1e2f9|🌸 Standard Package|Wedding|1 Photographer, 4 Hours Coverage, 100 Edited Photos|500.0
+d6956197-4af7-42a5-9768-cafc77c806a9|💎 Premium Package|Wedding|2 Photographers, 1 Videographer, 8 Hours Coverage, 300 Edited Photos|1200.0
+14a30e01-ffc6-494c-ba57-dfc4d1ea5ae7|👑 Luxury Package|Wedding|2 Photographers, 2 Videographers, Full Day Coverage, Drone Footage, 500 Edited Photos|2500.0
+06cf53ab-c112-4c23-9164-4da8a0ac4be2|🌸 Standard Package|Gathering|1 Photographer, 3 Hours Coverage, 50 Edited Photos|300.0
+2903a671-0f25-4aa9-8493-2c149f08a29d|💎 Premium Package|Gathering|1 Photographer, 1 Videographer, 5 Hours Coverage, 150 Edited Photos|800.0
+606a598f-84dd-4b8d-b668-75b9c1520d15|🌸 Standard Package|Party|1 Photographer, 4 Hours Coverage, 100 Edited Photos|400.0
+e494a155-77e8-4086-8357-69464d2dd6e8|👑 Luxury Package|Party|2 Photographers, 1 Videographer, 8 Hours Coverage, After-movie|1500.0
+eb6d4659-2008-46b5-b909-3c8f2fe40fbb|Diamond package|Gathering|1 photographer, 1 videographer, 400 edited photos |2000.0
