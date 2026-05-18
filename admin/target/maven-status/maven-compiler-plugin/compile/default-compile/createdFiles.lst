@@ -1,0 +1,16 @@
+com\weddingplanner\admin\controller\IncomeController.class
+com\weddingplanner\admin\service\PhotographerService.class
+com\weddingplanner\admin\controller\AuthController.class
+com\weddingplanner\admin\model\Admin.class
+com\weddingplanner\admin\service\IncomeService.class
+com\weddingplanner\admin\controller\PhotographerController.class
+com\weddingplanner\admin\model\Booking.class
+com\weddingplanner\admin\model\Payment.class
+com\weddingplanner\admin\controller\AdminController.class
+com\weddingplanner\admin\controller\IntegrationController.class
+com\weddingplanner\admin\AdminApplication.class
+com\weddingplanner\admin\controller\DashboardController.class
+com\weddingplanner\admin\model\Photographer.class
+com\weddingplanner\admin\config\WebConfig.class
+com\weddingplanner\admin\config\AuthInterceptor.class
+com\weddingplanner\admin\service\AdminService.class
