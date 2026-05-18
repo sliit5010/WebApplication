@@ -1,5 +1,0 @@
-a1bcb995-091b-45ff-b1c8-8816444302b3|mikes|mike@gmail.com|0d6684d6-adf2-4f7d-bcaa-7b3862b1e2f9|2024-01-01
-7e7a234e-5ff2-4716-8dab-1023a0523778|Dishan|dilshan@gmail.com|0d6684d6-adf2-4f7d-bcaa-7b3862b1e2f9|2001-10-10
-28231f24-6538-4b8b-9e53-fb788d17433e|Kimi|kimi@gmail.com|0d6684d6-adf2-4f7d-bcaa-7b3862b1e2f9|2000-10-10
-e2b12c7e-ff31-4b01-a194-799b849f8e35|mark|mark@gmail.com|d6956197-4af7-42a5-9768-cafc77c806a9|2022-10-12
-1671a600-0fa0-46dd-b5b2-5f3df84f54e0|Dishan|dilshan@gmail.com|606a598f-84dd-4b8d-b668-75b9c1520d15|2001-10-10
