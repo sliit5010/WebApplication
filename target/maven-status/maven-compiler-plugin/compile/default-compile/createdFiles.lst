@@ -1,0 +1,6 @@
+com\eventbooking\model\PremiumUser.class
+com\eventbooking\service\UserService.class
+com\eventbooking\controller\UserController.class
+com\eventbooking\model\User.class
+com\eventbooking\EventBookingSystemApplication.class
+com\eventbooking\model\RegularUser.class
