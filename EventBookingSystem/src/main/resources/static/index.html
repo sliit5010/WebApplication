@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebra Event Photography - Users</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .notification-inline {
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+        .notification-inline.success { background: rgba(0, 200, 83, 0.2); border: 1px solid #00c853; color: #fff; display: block; }
+        .notification-inline.error { background: rgba(255, 61, 0, 0.2); border: 1px solid #ff3d00; color: #fff; display: block; }
+
+        /* ---- Hero Slideshow ---- */
+        .slideshow-wrapper {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 72px);
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        .slide.active { opacity: 1; }
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(15,17,21,0.82) 0%, rgba(15,17,21,0.45) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .slide-overlay h1 {
+            font-size: 3.8rem;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+        .slide-overlay p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+        /* Dot indicators */
+        .slide-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            border: 1px solid rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .dot.active { background: #d4af37; border-color: #d4af37; }
+        /* Prev/Next arrows */
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212,175,55,0.18);
+            border: 1px solid rgba(212,175,55,0.4);
+            color: #d4af37;
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+        .slide-arrow:hover { background: rgba(212,175,55,0.38); }
+        .slide-arrow.prev { left: 25px; }
+        .slide-arrow.next { right: 25px; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Celebra<span>.</span></div>
+        <div class="nav-links">
+            <a href="#" id="nav-home" class="active" onclick="showSection('home')">Home</a>
+            <a href="#" id="nav-register" onclick="showSection('register')">Register</a>
+            <a href="#" id="nav-clients" onclick="showSection('clients')">Clients</a>
+            <a href="#" id="nav-manage" onclick="showSection('manage')">Manage</a>
+            <a href="#" id="nav-remove" onclick="showSection('remove')">Remove</a>
+        </div>
+    </nav>
+
+    <!-- Home / Slideshow Section -->
+    <section id="home" class="section-active" style="padding: 0; min-height: auto;">
+        <div class="slideshow-wrapper">
+
+            <!-- Slide 1: Wedding -->
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop');">
+                <div class="slide-overlay">
+                    <h1>Capture Your Most <span>Precious</span> Moments</h1>
+                    <p>Professional photography for weddings, events, and milestones that last a lifetime.</p>
+                    <button class="btn-primary" onclick="showSection('register')">Register Now <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Slide 2: Engagement -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1600&auto=format&fit=crop');">
+                <div class="slide-overlay">
+                    <h1>Timeless <span>Engagement</span> Photography</h1>
+                    <p>Document the start of your forever with our expert photographers.</p>
+                    <button class="btn-primary" onclick="showSection('register')">Get Started <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Slide 3: Party -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1600&auto=format&fit=crop');">
+                <div class="slide-overlay">
+                    <h1>Vibrant <span>Party</span> Coverage</h1>
+                    <p>From intimate gatherings to grand celebrations — we capture every moment.</p>
+                    <button class="btn-primary" onclick="showSection('register')">Book a Slot <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Slide 4: Corporate -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&auto=format&fit=crop');">
+                <div class="slide-overlay">
+                    <h1>Professional <span>Corporate</span> Events</h1>
+                    <p>High-quality visual coverage for conferences, launches, and company milestones.</p>
+                    <button class="btn-primary" onclick="showSection('register')">Register Client <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Slide 5: Graduation -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&auto=format&fit=crop');">
+                <div class="slide-overlay">
+                    <h1>Celebrate <span>Graduation</span> Milestones</h1>
+                    <p>Honor academic achievements with beautiful, lasting photography.</p>
+                    <button class="btn-primary" onclick="showSection('register')">Start Booking <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Slide 6: Portrait -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1502164980785-f8aa41d53611?w=1600&auto=format&fit=crop');">
+                <div class="slide-overlay">
+                    <h1>Stunning <span>Portrait</span> Sessions</h1>
+                    <p>Individual and family portraits crafted with artistry and care.</p>
+                    <button class="btn-primary" onclick="showSection('register')">Register Now <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Arrows -->
+            <div class="slide-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
+            <div class="slide-arrow next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
+
+            <!-- Dots -->
+            <div class="slide-dots" id="slide-dots"></div>
+        </div>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register" class="section-hidden">
+        <div class="container" style="margin-top: 120px;">
+            <div class="section-header">
+                <h2>Client <span>Registration</span></h2>
+                <p>Register a new client for photography services</p>
+            </div>
+            
+            <div class="glass-panel" style="max-width: 500px; margin: 0 auto;">
+                <div id="add-alert" class="notification-inline"></div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="add-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="add-email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="add-password" required placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label>Package Type</label>
+                    <select id="add-type" required>
+                        <option value="Regular">Standard Package</option>
+                        <option value="Premium">Premium Package</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-primary btn-full" onclick="addUser()">Contact & Register</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="section-hidden">
+        <div class="container" style="margin-top: 120px;">
+            <div class="section-header">
+                <h2>Client <span>Portfolio</span></h2>
+                <p>View registered clients</p>
+            </div>
+            <button class="btn-primary" style="margin-bottom: 20px;" onclick="loadUsers()">Refresh Data</button>
+            <div id="view-alert" class="notification-inline"></div>
+            <div class="table-container">
+                <table class="glass-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Client Name</th>
+                            <th>Email</th>
+                            <th>Package</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body">
+                        <tr><td colspan="5" style="text-align:center; padding: 40px; color: rgba(255,255,255,0.5);">Loading clients...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manage Section -->
+    <section id="manage" class="section-hidden">
+        <div class="container" style="margin-top: 120px;">
+            <div class="section-header">
+                <h2>Manage <span>Client Details</span></h2>
+                <p>Update client information</p>
+            </div>
+            
+            <div class="glass-panel" style="max-width: 500px; margin: 0 auto;">
+                <div id="update-alert" class="notification-inline"></div>
+                <div class="form-group" style="display:flex; gap:10px;">
+                    <input type="text" id="upd-id" placeholder="Client ID (e.g. U1716...)" style="margin-bottom:0;">
+                    <button class="btn-primary" onclick="lookupUser()">Find</button>
+                </div>
+                
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="upd-name" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="upd-email" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                    <label>New Password (Optional)</label>
+                    <input type="password" id="upd-password" placeholder="New Password">
+                </div>
+                
+                <button type="button" class="btn-primary btn-full" onclick="updateUser()">Save Changes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remove Section -->
+    <section id="remove" class="section-hidden">
+        <div class="container" style="margin-top: 120px;">
+            <div class="section-header">
+                <h2>Remove <span>Client</span></h2>
+                <p>Delete a client from the system</p>
+            </div>
+            
+            <div class="glass-panel" style="max-width: 500px; margin: 0 auto;">
+                <div id="del-alert" class="notification-inline"></div>
+                <div class="form-group">
+                    <label>Client ID</label>
+                    <input type="text" id="del-id" placeholder="Client ID to remove">
+                </div>
+                <button type="button" class="btn-primary btn-full" style="background: #e74c3c;" onclick="deleteUser()">Confirm Deletion</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(s => {
+                s.classList.remove('section-active');
+                s.classList.add('section-hidden');
+            });
+            document.getElementById(sectionId).classList.remove('section-hidden');
+            document.getElementById(sectionId).classList.add('section-active');
+            
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            document.getElementById('nav-' + sectionId).classList.add('active');
+
+            if (sectionId === 'clients') loadUsers();
+            // Resume slideshow when on home, pause otherwise
+            if (sectionId === 'home') {
+                if (typeof resetTimer === 'function') resetTimer();
+            } else {
+                if (typeof autoTimer !== 'undefined') clearInterval(autoTimer);
+            }
+        }
+
+        function showAlert(id, msg, type) {
+            const el = document.getElementById(id);
+            el.textContent = msg;
+            el.className = 'notification-inline ' + type;
+            setTimeout(() => el.style.display = 'none', 4000);
+        }
+
+        async function addUser() {
+            const name     = document.getElementById('add-name').value.trim();
+            const email    = document.getElementById('add-email').value.trim();
+            const password = document.getElementById('add-password').value.trim();
+            const userType = document.getElementById('add-type').value;
+
+            if (!name || !email || !password) {
+                showAlert('add-alert', 'Please fill in all fields.', 'error'); return;
+            }
+
+            const form = new URLSearchParams({ name, email, password, userType });
+            try {
+                const res  = await fetch('/users/add', { method: 'POST', body: form });
+                const data = await res.json();
+                if (data.success) {
+                    showAlert('add-alert', 'Registration successful. ID: ' + data.userId, 'success');
+                    document.getElementById('add-name').value = '';
+                    document.getElementById('add-email').value = '';
+                    document.getElementById('add-password').value = '';
+                } else {
+                    showAlert('add-alert', data.message, 'error');
+                }
+            } catch(e) {
+                showAlert('add-alert', 'Error communicating with server.', 'error');
+            }
+        }
+
+        async function loadUsers() {
+            const tbody = document.getElementById('user-table-body');
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 40px;">Loading data...</td></tr>';
+
+            try {
+                const res   = await fetch('/users');
+                const users = await res.json();
+
+                if (!users.length) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 40px; color: rgba(255,255,255,0.5);">No clients registered yet.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = users.map(u => `
+                    <tr>
+                        <td style="font-size:0.8rem; color:rgba(255,255,255,0.6);">${u.userId}</td>
+                        <td><strong>${u.name}</strong></td>
+                        <td>${u.email}</td>
+                        <td><span style="display:inline-block; padding:4px 8px; border-radius:4px; background:rgba(255,255,255,0.1); font-size:0.8rem;">${u.userType}${u.discountCode ? ' (' + u.discountCode + ')' : ''}</span></td>
+                        <td style="display:flex;gap:10px;">
+                            <button class="btn-primary" style="padding: 5px 15px; font-size: 0.8rem;" onclick="prefillUpdate('${u.userId}','${u.name}','${u.email}')">Edit</button>
+                            <button class="btn-primary" style="padding: 5px 15px; font-size: 0.8rem; background: #e74c3c;" onclick="prefillDelete('${u.userId}')">Del</button>
+                        </td>
+                    </tr>`).join('');
+            } catch(e) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 40px; color: #ff3d00;">Failed to load clients.</td></tr>';
+            }
+        }
+
+        function prefillUpdate(id, name, email) {
+            showSection('manage');
+            document.getElementById('upd-id').value    = id;
+            document.getElementById('upd-name').value  = name;
+            document.getElementById('upd-email').value = email;
+            document.getElementById('upd-password').value = '';
+        }
+
+        async function lookupUser() {
+            const id = document.getElementById('upd-id').value.trim();
+            if (!id) { showAlert('update-alert','Enter a Client ID first.','error'); return; }
+            try {
+                const res  = await fetch('/users/' + id);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.userId) {
+                        document.getElementById('upd-name').value  = data.name;
+                        document.getElementById('upd-email').value = data.email;
+                        showAlert('update-alert', 'Client found. You may edit details.', 'success');
+                    } else {
+                        showAlert('update-alert', 'Client ID not found.', 'error');
+                    }
+                } else {
+                    showAlert('update-alert', 'Client ID not found.', 'error');
+                }
+            } catch(e) {
+                showAlert('update-alert', 'Error communicating with server.', 'error');
+            }
+        }
+
+        async function updateUser() {
+            const userId   = document.getElementById('upd-id').value.trim();
+            const name     = document.getElementById('upd-name').value.trim();
+            const email    = document.getElementById('upd-email').value.trim();
+            const password = document.getElementById('upd-password').value.trim();
+
+            if (!userId || !name || !email) {
+                showAlert('update-alert', 'ID, Name, and Email are required.', 'error'); return;
+            }
+
+            const form = new URLSearchParams({ userId, name, email, password });
+            try {
+                const res  = await fetch('/users/update', { method: 'POST', body: form });
+                const data = await res.json();
+                showAlert('update-alert', data.message, data.success ? 'success' : 'error');
+            } catch (e) {
+                showAlert('update-alert', 'Error communicating with server.', 'error');
+            }
+        }
+
+        function prefillDelete(id) {
+            showSection('remove');
+            document.getElementById('del-id').value = id;
+        }
+
+        async function deleteUser() {
+            const userId = document.getElementById('del-id').value.trim();
+            if (!userId) { showAlert('del-alert', 'Please enter a Client ID.', 'error'); return; }
+
+            if (!confirm('Are you sure you want to remove client: ' + userId + '?')) return;
+
+            const form = new URLSearchParams({ userId });
+            try {
+                const res  = await fetch('/users/delete', { method: 'POST', body: form });
+                const data = await res.json();
+                showAlert('del-alert', data.message, data.success ? 'success' : 'error');
+                if (data.success) document.getElementById('del-id').value = '';
+            } catch(e) {
+                showAlert('del-alert', 'Error communicating with server.', 'error');
+            }
+        }
+
+        // ---- Slideshow Logic ----
+        const slides   = document.querySelectorAll('.slide');
+        const dotsWrap = document.getElementById('slide-dots');
+        let current    = 0;
+        let autoTimer  = null;
+
+        // Build dots dynamically
+        slides.forEach((_, i) => {
+            const d = document.createElement('div');
+            d.className = 'dot' + (i === 0 ? ' active' : '');
+            d.onclick = () => goTo(i);
+            dotsWrap.appendChild(d);
+        });
+
+        function goTo(n) {
+            slides[current].classList.remove('active');
+            dotsWrap.children[current].classList.remove('active');
+            current = (n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            dotsWrap.children[current].classList.add('active');
+            resetTimer();
+        }
+
+        function changeSlide(dir) { goTo(current + dir); }
+
+        function resetTimer() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(() => goTo(current + 1), 5000);
+        }
+
+        resetTimer(); // Start auto-play on page load
+    </script>
+
+</body>
+</html>
