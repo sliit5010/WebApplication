@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebra - Photographers Directory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #f3c06b;
+            --btn-gold: #eab308;
+            --bg-dark: #080b11;
+            --card-dark: #0f131f;
+            --input-dark: #141a29;
+            --border-dark: #1e2638;
+            --text-gray: #9ca3af;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Override main content spacing since we are using layout.html sidebar */
+        .main-content {
+            margin-left: 250px;
+            padding: 2.5rem;
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        /* Beautiful Serif Branding Fonts */
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-logo span {
+            color: var(--primary-gold);
+        }
+
+        .section-header-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            margin-top: 0.5rem;
+        }
+
+        .form-title, .dir-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+        }
+
+        /* Main Container Border Layout */
+        .celebra-container {
+            border: 1px solid #1c2333;
+            border-radius: 20px;
+            padding: 2.5rem;
+            background-color: #0b0f19;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-top: 1rem;
+        }
+
+        /* Cards and Elements Styling */
+        .glass-pane {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+        }
+
+        .form-label {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            background-color: var(--input-dark);
+            border: 1px solid var(--border-dark);
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control::placeholder {
+            color: #4b5563;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: var(--input-dark);
+            border-color: var(--btn-gold);
+            color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.15);
+        }
+
+        .form-control[readonly] {
+            background-color: #0c0e14;
+            border-color: #171d2b;
+            color: #6b7280;
+        }
+
+        /* Gold Pill Button */
+        .btn-gold-pill {
+            background-color: var(--btn-gold);
+            color: #080b11;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            border: none;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-gold-pill:hover {
+            background-color: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(234, 179, 8, 0.3);
+        }
+
+        /* Directory Cards Styling */
+        .dir-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .total-badge {
+            background-color: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            color: var(--primary-gold);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .photographer-card {
+            background-color: var(--input-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+        }
+
+        .photographer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Specialized left border colors based on specialization */
+        .card-wedding {
+            border-left-color: var(--btn-gold);
+        }
+
+        .card-event {
+            border-left-color: #60a5fa;
+        }
+
+        .card-other {
+            border-left-color: #a78bfa;
+        }
+
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.4rem;
+        }
+
+        .photo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin: 0;
+            line-height: 1.25;
+            max-width: 70%;
+        }
+
+        /* Custom Badges */
+        .spec-badge {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-wedding {
+            background-color: rgba(234, 179, 8, 0.1);
+            color: var(--btn-gold);
+        }
+
+        .badge-event {
+            background-color: rgba(96, 165, 250, 0.1);
+            color: #60a5fa;
+        }
+
+        .badge-other {
+            background-color: rgba(167, 139, 250, 0.1);
+            color: #a78bfa;
+        }
+
+        .photo-meta {
+            color: #6b7280;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+        }
+
+        .info-table {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-table td {
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+        }
+
+        .info-label {
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+
+        .info-value {
+            text-align: right;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Action Buttons */
+        .card-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-card-edit {
+            background-color: #242d42;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 0;
+            flex: 1;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-card-edit:hover {
+            background-color: #2d3852;
+            color: #ffffff;
+        }
+
+        .btn-card-delete {
+            background-color: #3a1f25;
+            color: #fca5a5;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 0;
+            flex: 1;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-card-delete:hover {
+            background-color: #4a242c;
+            color: #fca5a5;
+        }
+    </style>
+</head>
+<body th:with="currentPage='photographers'">
+    <!-- Include Sidebar layout -->
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+
+    <main class="main-content">
+        <!-- Header Row -->
+        <div class="d-flex justify-content-between align-items-center mb-4 px-2">
+            <h1 class="brand-logo">Celebra<span>.</span></h1>
+            <h2 class="section-header-text">Photographers</h2>
+        </div>
+
+        <!-- Master Content Container -->
+        <div class="celebra-container">
+            <div class="row g-5">
+                
+                <!-- Left Pane: Form -->
+                <div class="col-lg-5">
+                    <div class="glass-pane">
+                        <h2 class="form-title" th:text="${editMode ? 'Edit Photographer' : 'Add Photographer'}">Add Photographer</h2>
+                        
+                        <form th:action="@{/photographers/save}" th:object="${photographer}" method="post">
+                            
+                            <!-- Photographer ID (Editable on Add, ReadOnly on Edit) -->
+                            <div class="mb-3">
+                                <label class="form-label">Photographer ID</label>
+                                <input type="text" th:field="*{id}" class="form-control" placeholder="e.g. P001" th:readonly="${editMode}" required>
+                            </div>
+
+                            <!-- Full Name -->
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" th:field="*{fullName}" class="form-control" placeholder="John Doe" required>
+                            </div>
+
+                            <!-- Contact Number -->
+                            <div class="mb-3">
+                                <label class="form-label">Contact Number</label>
+                                <input type="text" th:field="*{contactNumber}" class="form-control" placeholder="+1 234 567 890" required>
+                            </div>
+
+                            <!-- Experience & Price Side-by-Side -->
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label class="form-label">Experience (Yrs)</label>
+                                    <input type="number" th:field="*{experience}" class="form-control" placeholder="5" min="0" required>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Price/Hr ($)</label>
+                                    <input type="number" step="0.01" th:field="*{rate}" class="form-control" placeholder="150" min="0" required>
+                                </div>
+                            </div>
+
+                            <!-- Specialization Dropdown -->
+                            <div class="mb-3">
+                                <label class="form-label">Specialization</label>
+                                <select th:field="*{specialization}" class="form-select" required>
+                                    <option value="Wedding Photographer">Wedding Photographer</option>
+                                    <option value="Event Photographer">Event Photographer</option>
+                                    <option value="Portrait Photographer">Portrait Photographer</option>
+                                </select>
+                            </div>
+
+                            <!-- Package Type -->
+                            <div class="mb-4">
+                                <label class="form-label">Package Type</label>
+                                <input type="text" th:field="*{packageType}" class="form-control" placeholder="e.g. Platinum Package" required>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-2">
+                                <button type="submit" class="btn-gold-pill">Save Photographer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Pane: Directory -->
+                <div class="col-lg-7">
+                    <div class="glass-pane">
+                        <div class="dir-header">
+                            <h2 class="dir-title m-0">Directory</h2>
+                            <div class="total-badge" th:text="${'Total: ' + photographers.size()}">Total: 0</div>
+                        </div>
+
+                        <!-- Photographers Loop -->
+                        <div class="directory-list" style="max-height: 600px; overflow-y: auto; padding-right: 0.5rem;">
+                            
+                            <!-- If no photographers exist -->
+                            <div th:if="${photographers.empty}" class="text-center py-5 text-muted">
+                                <i class="bi bi-camera-fill fs-1 mb-3 d-block text-secondary"></i>
+                                No photographers registered yet.
+                            </div>
+
+                            <!-- Individual Card -->
+                            <div th:each="photo : ${photographers}" 
+                                 class="photographer-card" 
+                                 th:classappend="${photo.specialization == 'Wedding Photographer' ? 'card-wedding' : (photo.specialization == 'Event Photographer' ? 'card-event' : 'card-other')}">
+                                
+                                <div class="card-header-row">
+                                    <h3 class="photo-name" th:text="${photo.fullName}">Matheesh Perera</h3>
+                                    
+                                    <!-- Dynamic Badge based on specialization -->
+                                    <span th:if="${photo.specialization == 'Wedding Photographer'}" class="spec-badge badge-wedding">WEDDING</span>
+                                    <span th:if="${photo.specialization == 'Event Photographer'}" class="spec-badge badge-event">EVENT</span>
+                                    <span th:if="${photo.specialization != 'Wedding Photographer' and photo.specialization != 'Event Photographer'}" 
+                                          class="spec-badge badge-other" 
+                                          th:text="${#strings.toUpperCase(photo.specialization.replace(' Photographer', ''))}">PORTRAIT</span>
+                                </div>
+
+                                <!-- ID and Contact Info -->
+                                <div class="photo-meta" th:text="${photo.id + ' • ' + photo.contactNumber}">P100 • 0778508778</div>
+
+                                <!-- Details Table -->
+                                <table class="info-table">
+                                    <tr>
+                                        <td class="info-label">Experience</td>
+                                        <td class="info-value" th:text="${photo.experience + ' Years'}">11 Years</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="info-label">Rate</td>
+                                        <td class="info-value" th:text="${'$' + #numbers.formatDecimal(photo.rate, 1, 'COMMA', 2, 'POINT') + '/hr'}">$2.00/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <!-- If specialization is Event, label changes to Event; otherwise Package -->
+                                        <td class="info-label" th:text="${photo.specialization == 'Event Photographer' ? 'Event' : 'Package'}">Package</td>
+                                        <td class="info-value" th:text="${photo.packageType}">Gold</td>
+                                    </tr>
+                                </table>
+
+                                <!-- Actions Row -->
+                                <div class="card-actions">
+                                    <a th:href="@{/photographers(editId=${photo.id})}" class="btn-card-edit">Edit</a>
+                                    <a th:href="@{'/photographers/delete/' + ${photo.id}}" 
+                                       class="btn-card-delete"
+                                       onclick="return confirm('Are you sure you want to delete this photographer?')">Delete</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

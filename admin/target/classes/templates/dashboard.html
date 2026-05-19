@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(title='Dashboard')}"></head>
+<body>
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+
+    <main class="main-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold" style="font-family: 'Playfair Display', serif; color: var(--primary-gold); font-size: 2.2rem; letter-spacing: -0.01em;">Dashboard Overview</h2>
+            <div th:if="${param.error}" class="alert alert-warning py-2 mb-0" style="background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); color: #fbbf24; border-radius: 8px;">
+                <i class="bi bi-exclamation-triangle"></i> Access restricted.
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card p-4">
+                    <div class="text-muted small mb-1">Total Income</div>
+                    <h3 class="fw-bold mb-0" th:text="${'$' + #numbers.formatDecimal(totalIncome, 1, 'COMMA', 2, 'POINT')}">$0.00</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4">
+                    <div class="text-muted small mb-1">Active Bookings</div>
+                    <h3 class="fw-bold mb-0">12</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4">
+                    <div class="text-muted small mb-1">System Users</div>
+                    <h3 class="fw-bold mb-0">48</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-4 fw-bold">Recent Payments</h5>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="payment : ${recentPayments}">
+                                <td th:text="${payment.id}"></td>
+                                <td th:text="${'$' + payment.amount}"></td>
+                                <td th:text="${payment.paymentDate}"></td>
+                                <td>
+                                    <span class="badge bg-light text-dark" th:text="${payment.method}"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(title='Admin Form')}"></head>
+<body th:with="currentPage='admins'">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+
+    <main class="main-content">
+        <div class="mb-4">
+            <a th:href="@{/admins}" class="text-decoration-none text-muted d-flex align-items-center gap-1 mb-2">
+                <i class="bi bi-arrow-left"></i> Back to list
+            </a>
+            <h2 class="fw-bold" style="font-family: 'Playfair Display', serif; color: var(--primary-gold); font-size: 2.2rem; letter-spacing: -0.01em;" th:text="${admin.id != null ? 'Edit Admin' : 'Add New Admin'}"></h2>
+        </div>
+
+        <div class="card" style="max-width: 600px;">
+            <div class="card-body p-4">
+                <form th:action="@{/admins/save}" th:object="${admin}" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Username</label>
+                        <input type="text" th:field="*{username}" class="form-control" placeholder="Enter username" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Password</label>
+                        <input type="password" th:field="*{password}" class="form-control" placeholder="Enter password" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-medium">Role</label>
+                        <select th:field="*{role}" class="form-select" required>
+                            <option value="Admin">Standard Admin</option>
+                            <option value="SuperAdmin">Super Admin</option>
+                        </select>
+                        <div class="form-text">Super Admins have full control over system settings.</div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary py-2 fw-bold">Save Admin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
