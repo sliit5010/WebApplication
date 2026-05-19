@@ -6,6 +6,11 @@ package com.eventbooking.model;
  *                   Inheritance (extended by RegularUser and PremiumUser)
  */
 public abstract class User {
+    private String userId;
+    private String name;
+    private String email;
+    private String password;
+    private String userType;
 
     // Encapsulation: all fields are private/protected
     protected String userId;
@@ -16,9 +21,9 @@ public abstract class User {
 
     // Constructor
     public User(String userId, String name, String email, String password, String userType) {
-        this.userId   = userId;
-        this.name     = name;
-        this.email    = email;
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
         this.password = password;
         this.userType = userType;
     }
