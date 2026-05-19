@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebra Event Photography</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Celebra<span>.</span></div>
+        <div class="nav-links">
+            <a href="#" class="active" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('events')">Events</a>
+            <a href="#" onclick="showSection('my-bookings')">My Bookings</a>
+            <a href="#" onclick="showSection('payments')">Payments</a>
+            <a href="#" onclick="showSection('packages')">Packages</a>
+            <a href="#" onclick="showSection('admin')" style="color: #0ea5e9; font-weight: bold;"><i class="fas fa-shield-alt"></i> Admin Menu</a>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section-active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Capture Your Most <span>Precious</span> Moments</h1>
+                <p>Professional photography and videography tailored to your unforgettable events. Experience the magic
+                    through our lenses.</p>
+                <button class="btn-primary" onclick="showSection('events')">Explore Events <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="hero-image">
+                <!-- Using a nice placeholder if local isn't found -->
+                <img src="images/wedding.png" alt="Photography"
+                    onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Select an <span>Event</span></h2>
+                <p>Choose the type of event you want to capture</p>
+            </div>
+            <div class="event-grid">
+                <div class="event-card" onclick="loadPackages('Wedding')">
+                    <div class="event-img-wrap">
+                        <img src="images/wedding.png" alt="Wedding"
+                            onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000'">
+                    </div>
+                    <div class="event-info">
+                        <h3>Wedding</h3>
+                        <p>Immortalize your special day.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Gathering')">
+                    <div class="event-img-wrap">
+                        <img src="images/gathering.png" alt="Gathering"
+                            onerror="this.src='https://images.unsplash.com/photo-1523580494112-021d22921822?q=80&w=1000'">
+                    </div>
+                    <div class="event-info">
+                        <h3>Gathering</h3>
+                        <p>Perfect for family and friends.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Party')">
+                    <div class="event-img-wrap">
+                        <img src="images/party.png" alt="Party"
+                            onerror="this.src='https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000'">
+                    </div>
+                    <div class="event-info">
+                        <h3>Party</h3>
+                        <p>Vibrant coverage of your celebrations.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Birthday Party')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/birthday,party" alt="Birthday Party">
+                    </div>
+                    <div class="event-info">
+                        <h3>Birthday Party</h3>
+                        <p>Celebrate your special day with unforgettable memories.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Corporate Event')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/corporate,event" alt="Corporate Event">
+                    </div>
+                    <div class="event-info">
+                        <h3>Corporate Event</h3>
+                        <p>Professional coverage for conferences and company events.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Baby Shower')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/baby,shower" alt="Baby Shower">
+                    </div>
+                    <div class="event-info">
+                        <h3>Baby Shower</h3>
+                        <p>Capture the joy before your little one arrives.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Engagement')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/engagement" alt="Engagement">
+                    </div>
+                    <div class="event-info">
+                        <h3>Engagement</h3>
+                        <p>Document your love story before the big day.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Graduation')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/graduation" alt="Graduation">
+                    </div>
+                    <div class="event-info">
+                        <h3>Graduation</h3>
+                        <p>Celebrate academic achievements and milestones.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Anniversary')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/anniversary" alt="Anniversary">
+                    </div>
+                    <div class="event-info">
+                        <h3>Anniversary</h3>
+                        <p>Honor years of love and commitment.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Product Launch')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/product,launch" alt="Product Launch">
+                    </div>
+                    <div class="event-info">
+                        <h3>Product Launch</h3>
+                        <p>Showcase your brand with high-quality visuals.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Fashion Show')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/fashion,show" alt="Fashion Show">
+                    </div>
+                    <div class="event-info">
+                        <h3>Fashion Show</h3>
+                        <p>Capture the glamour and energy of the runway.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Concert / Live Music')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/concert" alt="Concert / Live Music">
+                    </div>
+                    <div class="event-info">
+                        <h3>Concert / Live Music</h3>
+                        <p>Live performance photography & videography.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Sports Event')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/sports" alt="Sports Event">
+                    </div>
+                    <div class="event-info">
+                        <h3>Sports Event</h3>
+                        <p>Action shots from games and tournaments.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Festival')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/festival" alt="Festival">
+                    </div>
+                    <div class="event-info">
+                        <h3>Festival</h3>
+                        <p>Vibrant coverage of cultural and music festivals.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Bridal Shower')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/bridal,shower" alt="Bridal Shower">
+                    </div>
+                    <div class="event-info">
+                        <h3>Bridal Shower</h3>
+                        <p>Pre-wedding celebration with the bride and her girls.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Retirement Party')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/retirement,party" alt="Retirement Party">
+                    </div>
+                    <div class="event-info">
+                        <h3>Retirement Party</h3>
+                        <p>Celebrate a well-deserved milestone.</p>
+                    </div>
+                </div>
+                <div class="event-card" onclick="loadPackages('Gender Reveal')">
+                    <div class="event-img-wrap">
+                        <img src="https://loremflickr.com/800/600/gender,reveal" alt="Gender Reveal">
+                    </div>
+                    <div class="event-info">
+                        <h3>Gender Reveal</h3>
+                        <p>Capture the exciting moment everyone's waiting for.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Packages Container -->
+            <div id="packages-container" style="display: none; margin-top: 50px;">
+                <div class="section-header">
+                    <h2>Available <span>Packages</span></h2>
+                    <p id="package-subtitle">Select a package for your event</p>
+                </div>
+                <div class="package-grid" id="packages-list">
+                    <!-- Packages will be injected here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bookings Management Section (Member 3) -->
+    <section id="my-bookings" class="section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>My <span>Bookings</span></h2>
+                <p>Manage your existing reservations</p>
+            </div>
+            <div class="table-container">
+                <table class="glass-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Event Type</th>
+                            <th>Package</th>
+                            <th>Price</th>
+                            <th>Event Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-tbody">
+                        <!-- Bookings injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Management Section (Member 5) -->
+    <section id="payments" class="section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Payment <span>Management</span></h2>
+                <p>Add payments, update records, and view payment history</p>
+            </div>
+
+            <div id="payment-alert" class="alert payment-alert d-none" role="alert"></div>
+
+            <div class="payment-layout">
+                <div class="payment-form-panel glass-panel">
+                    <h3 id="payment-form-title">Add Payment</h3>
+                    <form id="payment-form" onsubmit="savePayment(event)">
+                        <input type="hidden" id="payment-id">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Customer Name</label>
+                                    <input type="text" id="payment-customer-name" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Booking ID</label>
+                                    <input type="text" id="payment-booking-id" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Payment Type</label>
+                                    <select id="payment-type" class="form-select" required onchange="togglePaymentFields()">
+                                        <option value="CARD">CARD</option>
+                                        <option value="CASH">CASH</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Amount (Rs)</label>
+                                    <input type="number" id="payment-amount" class="form-control" min="0.01" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Payment Status</label>
+                                    <select id="payment-status" class="form-select" required>
+                                        <option value="PENDING">PENDING</option>
+                                        <option value="COMPLETED">COMPLETED</option>
+                                        <option value="FAILED">FAILED</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Payment Date</label>
+                                    <input type="date" id="payment-date" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="card-payment-fields" class="payment-extra-fields">
+                            <h4>Card Details</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Card Holder Name</label>
+                                        <input type="text" id="card-holder-name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Card Number</label>
+                                        <input type="text" id="card-number" class="form-control" maxlength="16" inputmode="numeric">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Expiry Date</label>
+                                        <input type="month" id="expiry-date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>CVV</label>
+                                        <input type="password" id="cvv" class="form-control" maxlength="3" inputmode="numeric">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Card Type</label>
+                                        <select id="card-type" class="form-select">
+                                            <option value="VISA">VISA</option>
+                                            <option value="MASTER">MASTER</option>
+                                            <option value="AMEX">AMEX</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="cash-payment-fields" class="payment-extra-fields">
+                            <h4>Cash Details</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Receipt Number</label>
+                                        <input type="text" id="receipt-number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Paid Location</label>
+                                        <input type="text" id="paid-location" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-actions">
+                            <button type="submit" class="btn-primary">Save Payment</button>
+                            <button type="button" class="btn-secondary-dark" onclick="resetPaymentForm()">Clear</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="payment-history-panel">
+                    <div class="payment-history-header">
+                        <h3>Payment History</h3>
+                        <button class="btn-primary btn-sm" onclick="fetchPayments()">Refresh</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="glass-table payment-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Booking ID</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments-tbody">
+                                <!-- Payment records injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package Management Section (Member 4) -->
+    <section id="packages" class="section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Manage <span>Packages</span></h2>
+                <p>Add, edit, or delete event packages</p>
+            </div>
+            <button class="btn-primary" style="margin-bottom: 20px;" onclick="openPackageModal()">+ Add New Package</button>
+            <div class="table-container">
+                <table class="glass-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Event Type</th>
+                            <th>Details</th>
+                            <th>Price (Rs)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="packages-admin-tbody">
+                        <!-- Packages injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unified Admin Dashboard (Member 6) -->
+    <section id="admin" class="section-hidden">
+        <div class="container" style="margin-top: 120px;">
+            <div class="section-header">
+                <h2>Admin <span>Dashboard</span></h2>
+                <p>System Overview & Integration Menu</p>
+            </div>
+            
+            <div class="glass-panel" style="margin-bottom: 40px;">
+                <h3 style="margin-bottom: 20px; font-weight: 300;">System <span style="font-weight: 600;">Statistics</span></h3>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 150px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;">
+                        <i class="fas fa-users" style="font-size: 2rem; color: #38bdf8; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0; font-size: 1.2rem;">Total Users</h4>
+                        <p id="stat-users" style="font-size: 2rem; font-weight: bold; margin: 0;">0</p>
+                    </div>
+                    <div style="flex: 1; min-width: 150px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;">
+                        <i class="fas fa-camera" style="font-size: 2rem; color: #a855f7; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0; font-size: 1.2rem;">Photographers</h4>
+                        <p id="stat-photographers" style="font-size: 2rem; font-weight: bold; margin: 0;">0</p>
+                    </div>
+                    <div style="flex: 1; min-width: 150px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;">
+                        <i class="fas fa-calendar-check" style="font-size: 2rem; color: #10b981; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0; font-size: 1.2rem;">Bookings</h4>
+                        <p id="stat-bookings" style="font-size: 2rem; font-weight: bold; margin: 0;">0</p>
+                    </div>
+                    <div style="flex: 1; min-width: 150px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;">
+                        <i class="fas fa-box" style="font-size: 2rem; color: #f59e0b; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0; font-size: 1.2rem;">Packages</h4>
+                        <p id="stat-packages" style="font-size: 2rem; font-weight: bold; margin: 0;">0</p>
+                    </div>
+                    <div style="flex: 1; min-width: 150px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;">
+                        <i class="fas fa-wallet" style="font-size: 2rem; color: #ef4444; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0; font-size: 1.2rem;">Total Revenue</h4>
+                        <p id="stat-revenue" style="font-size: 2rem; font-weight: bold; margin: 0;">Rs 0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass-panel text-center">
+                <h3 style="margin-bottom: 20px;">System Documentation</h3>
+                <p style="color: #cbd5e1; margin-bottom: 30px;">Access system diagrams and final integration reports for Member 6.</p>
+                <a href="#" class="btn-primary" style="margin-right: 15px;"><i class="fas fa-project-diagram"></i> View UML Diagram</a>
+                <a href="#" class="btn-primary" style="background: #10b981;"><i class="fas fa-file-alt"></i> View Final Report</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content glass-panel">
+            <span class="close-btn" onclick="closeModal('booking-modal')">&times;</span>
+            <h2 id="booking-modal-title">Book Package</h2>
+            <p id="booking-package-details" style="color: #cbd5e1; margin-bottom: 20px; font-size: 0.9rem;"></p>
+            <form id="booking-form" onsubmit="submitBooking(event)">
+                <input type="hidden" id="book-package-id">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="book-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="book-email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Event Date</label>
+                    <input type="date" id="book-date" required>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Booking Modal -->
+    <div id="edit-booking-modal" class="modal">
+        <div class="modal-content glass-panel">
+            <span class="close-btn" onclick="closeModal('edit-booking-modal')">&times;</span>
+            <h2>Edit Booking</h2>
+            <form id="edit-booking-form" onsubmit="updateBooking(event)">
+                <input type="hidden" id="edit-book-id">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="edit-book-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="edit-book-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Event Type</label>
+                    <select id="edit-book-event-type" required onchange="loadPackagesForEdit(this.value)">
+                        <option value="Wedding">Wedding</option>
+                        <option value="Gathering">Gathering</option>
+                        <option value="Party">Party</option>
+                        <option value="Birthday Party">Birthday Party</option>
+                        <option value="Corporate Event">Corporate Event</option>
+                        <option value="Baby Shower">Baby Shower</option>
+                        <option value="Engagement">Engagement</option>
+                        <option value="Graduation">Graduation</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Product Launch">Product Launch</option>
+                        <option value="Fashion Show">Fashion Show</option>
+                        <option value="Concert / Live Music">Concert / Live Music</option>
+                        <option value="Sports Event">Sports Event</option>
+                        <option value="Festival">Festival</option>
+                        <option value="Bridal Shower">Bridal Shower</option>
+                        <option value="Retirement Party">Retirement Party</option>
+                        <option value="Gender Reveal">Gender Reveal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Package</label>
+                    <select id="edit-book-package" required>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Event Date</label>
+                    <input type="date" id="edit-book-date" required>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Update Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Package Admin Modal -->
+    <div id="package-modal" class="modal">
+        <div class="modal-content glass-panel">
+            <span class="close-btn" onclick="closeModal('package-modal')">&times;</span>
+            <h2 id="package-modal-title">Add/Edit Package</h2>
+            <form id="package-form" onsubmit="savePackage(event)">
+                <input type="hidden" id="pkg-id">
+                <div class="form-group">
+                    <label>Package Name</label>
+                    <input type="text" id="pkg-name" required placeholder="e.g. 🌸 Standard Package">
+                </div>
+                <div class="form-group">
+                    <label>Event Type</label>
+                    <select id="pkg-type" required>
+                        <option value="Wedding">Wedding</option>
+                        <option value="Gathering">Gathering</option>
+                        <option value="Party">Party</option>
+                        <option value="Birthday Party">Birthday Party</option>
+                        <option value="Corporate Event">Corporate Event</option>
+                        <option value="Baby Shower">Baby Shower</option>
+                        <option value="Engagement">Engagement</option>
+                        <option value="Graduation">Graduation</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Product Launch">Product Launch</option>
+                        <option value="Fashion Show">Fashion Show</option>
+                        <option value="Concert / Live Music">Concert / Live Music</option>
+                        <option value="Sports Event">Sports Event</option>
+                        <option value="Festival">Festival</option>
+                        <option value="Bridal Shower">Bridal Shower</option>
+                        <option value="Retirement Party">Retirement Party</option>
+                        <option value="Gender Reveal">Gender Reveal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Details</label>
+                    <textarea id="pkg-details" required rows="3" placeholder="What's included?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Price (Rs)</label>
+                    <input type="number" id="pkg-price" required step="0.01">
+                </div>
+                <button type="submit" class="btn-primary btn-full">Save Package</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Notification Alert -->
+    <div id="notification" class="notification">
+        <span id="notif-message">Success!</span>
+    </div>
+
+    <script src="js/script.js?v=4"></script>
+</body>
+
+</html>
